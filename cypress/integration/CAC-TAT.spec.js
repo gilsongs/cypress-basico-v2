@@ -129,6 +129,10 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('input[type="file"]#file-upload')
             .should('not.have.value')
             .selectFile('cypress/fixtures/example.json')
+            .should(function($input) {
+                // console.log($input)
+                expect($input[0].files[0].name).to.equal('example.json')
+            })
     })      
   })
   
