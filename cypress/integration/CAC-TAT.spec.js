@@ -123,6 +123,12 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             .last().uncheck()
             .should('not.be.checked')
 
+    })
+    
+    it.only('seleciona um arquivo da pasta fixtures', function() {
+        cy.get('input[type="file"]#file-upload')
+            .should('not.have.value')
+            .selectFile('cypress/fixtures/example.json')
     })      
   })
   
