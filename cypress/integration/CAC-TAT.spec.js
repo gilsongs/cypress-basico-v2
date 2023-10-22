@@ -135,7 +135,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
             })
     })
     
-    it.only('seleciona um arquivo simulando um drag-and-drop', function() {
+    it('seleciona um arquivo simulando um drag-and-drop', function() {
         cy.get('input[type="file"]#file-upload')
             .should('not.have.value')
             // simula que arrastou e soltou o arquivo no input-file
@@ -144,6 +144,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {
                 // console.log($input)
                 expect($input[0].files[0].name).to.equal('example.json')
             })
-    })     
+    })
+    
+    it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
+        cy.fixture('example.json').as('sampleFile')
+        cy.get('input[type="file"]#file-upload')
+            .selectFile('@sampleFile')
+            .should(function($input) {
+                expect($input[0].files[0].name).to.equal('example.json')
+            })
+    })      
   })
   
